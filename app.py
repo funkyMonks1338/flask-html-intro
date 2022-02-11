@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 
 
 PROMOTION_LINES = [
@@ -25,6 +25,25 @@ def index():
 @app.route('/promotion')
 def promotion():
     return ''.join(f'<p>{line}</p>' for line in PROMOTION_LINES)
+
+
+@app.route('/image_mars')
+def image_mars():
+    return f"""
+    <!DOCTYPE html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Привет, Марс!</title>
+    </head>
+    
+    <body>
+        <h1>Жди нас, Марс!</h1>
+        <img src="{url_for('static', filename='img/mars_1.gif')}" alt="Гифка 'Марс'">
+        <p>Вот она какая, красная планета.</p>
+    </body>
+    """
 
 
 if __name__ == '__main__':
